@@ -16,39 +16,39 @@ public class Main {
         //String number = "89686409890";
         //String number = "123456";
 
-        System.out.println(Arrays.toString(CheckPhone(number)));
+        System.out.println(Arrays.toString(checkPhone(number)));
     }
 
-    public static String[] CheckPhone(String number) {
+    public static String[] checkPhone(String number) {
         ArrayList<String> changes = new ArrayList<>();
         String[] result = new String[2];
-        boolean WrongNum = false;
-        boolean WasChanged = false;
+        boolean wrongNum = false;
+        boolean wasChanged = false;
 
         if (number.contains(" ") || number.contains("[") || number.contains("]") || number.contains("(")
                 || number.contains(")") || number.contains("}") || number.contains("{")) {
             number = number.replace(" ", "");
             number = number.replaceAll("[()\\[\\]{}]", "");
             changes.add("В номере есть пробелы и/или скобки");
-            WasChanged = true;
+            wasChanged = true;
         }
 
         if (number.startsWith("+7")) {
             number = number.replace("+7", "8");
             changes.add("Замена +7 на 8");
-            WasChanged = true;
+            wasChanged = true;
         }
 
         if (number.length() != 11) {
             changes.add("Количество символов не 11");
-            WrongNum = true;
+            wrongNum = true;
         }
 
-        if (!WasChanged) {
+        if (!wasChanged) {
             changes.add("Не было изменений");
         }
 
-        if (WrongNum) {
+        if (wrongNum) {
             result[0] = "Введен некорректный номер";
         } else {
             result[0] = number;
